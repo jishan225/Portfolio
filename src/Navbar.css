@@ -1,20 +1,31 @@
 .navbar {
   position: fixed;
-  top: 20px;           /* Padding from top */
-  left: 50%;           /* Center horizontally */
-  transform: translateX(-50%); /* Perfect centering */
-  width: calc(100% - 80px); /* Width with left/right padding */
-  max-width: 1200px;   /* Optional: maximum width */
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%); /* This gets overridden by animation */
+  width: calc(100% - 80px);
+  max-width: 1200px;
   height: 70px;
-  background-color: rgba(255, 255, 255, 0);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  border: 1px solid rgba(5, 4, 63, 0.502);
-  border-radius: 50px; /* Rounded corners */
+  background-color: #2632df2e;
+  border: 1px solid #2633df75;
+  border-radius: 50px;
   z-index: 1000;
   transition: all 0.3s ease;
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  animation: fadeInDown 1.2s ease-in-out;
 }
+
+@keyframes fadeInDown {
+  0% {
+    opacity: 0;
+    transform: translateX(-50%) translateY(-30px); /* Keep centered + move from top */
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0); /* Keep centered + normal position */
+  }
+}
+
 
 .navbar-container {
   display: flex;
@@ -25,12 +36,15 @@
 }
 
 .navbar-logo {
-  color: rgba(0, 0, 255, 0.317);
+  color: #ffffff;
   font-size: 1.5rem;
   font-weight: bold;
   text-decoration: none;
+  transition: color 0.3s ease;
 }
-
+.navbar-logo:hover{
+ color: #6049ea;
+}
 .nav-menu {
   display: flex;
   list-style: none;
@@ -40,7 +54,7 @@
 }
 
 .nav-link {
-  color: rgba(0, 0, 255, 0.317);
+  color: #ffffff;
   text-decoration: none;
   font-size: 1rem;
   font-weight: bold;
@@ -48,5 +62,5 @@
 }
 
 .nav-link:hover {
-  color: rgba(255, 255, 255, 0.902);
+  color: #6049ea;
 }

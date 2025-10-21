@@ -1,3 +1,55 @@
-body {
-  font-family: 'Poppins', sans-serif;
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
+
+html,
+body,
+#root {
+  width: 100%;
+  height: 100%;
+  overflow: hidden; 
+  font-family: "Poppins", sans-serif;
+  background: transparent;
+}
+
+.darkveil-background {
+  position: fixed;       
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+  z-index: 0;            
+}
+
+
+#root > *:not(.darkveil-background) {
+  position: relative;
+  z-index: 10;          
+}
+
+.fade-in {
+  animation: fadeIn 1s ease-in-out forwards;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(15px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+
+::-webkit-scrollbar {
+  width: 0;
+  background: transparent;
+}
+
+

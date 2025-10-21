@@ -1,0 +1,150 @@
+/* 🌌 MAIN CONTAINER ABOVE BACKGROUND */
+.container {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  z-index: 10; /* Keeps it above DarkVeil */
+}
+
+/* Optional translucent overlay for better readability */
+.container::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+}
+
+/* 🧩 CONTENT AREA */
+.content {
+  display: flex;
+  align-items: center;              /* Vertically center both sides */
+  justify-content: space-between;   /* Push card left, text right */
+  padding: 0 150px;
+  flex: 1;
+}
+
+/* 🪞 LEFT CARD SECTION */
+.card {
+  flex: 1;
+  display: flex;
+  justify-content: center;          /* Center card horizontally */
+  align-items: center; 
+  animation: fadeInLeft 1.2s ease-in-out;            /* Vertically center card */
+}
+
+/* ✍️ RIGHT TEXT SECTION */
+.text-section {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 50px 80px;
+  color: #ffffff;
+  animation: fadeInRight 1.2s ease-in-out;
+}
+
+/* 👋 INTRO HEADING */
+.HeadName {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 30px;
+}
+
+.HeadName h2 {
+  font-size: 2.8rem;
+  font-weight: 700;
+  color: #ffffff;
+  letter-spacing: 1px;
+}
+
+.HeadName h4 {
+  font-size: 1.3rem;
+  color: #aaa;
+  font-weight: 400;
+}
+
+.highlight {
+  color: #6049ea;
+}
+
+/* 💬 ABOUT SECTION */
+.about {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  max-width: 600px;
+}
+
+.about h4 {
+  font-size: 1.6rem;
+  font-weight: 600;
+  color: #6049ea;
+}
+
+.about hr {
+  width: 80px;
+  border: 2px solid #6049ea;
+  border-radius: 5px;
+}
+
+.about p {
+  font-size: 1.05rem;
+  line-height: 1.6;
+  color: #ffffff;
+  text-align: justify;
+}
+
+/* ✨ FADE-IN FROM RIGHT ANIMATION */
+@keyframes fadeInRight {
+  from {
+    opacity: 0;
+    transform: translateX(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes fadeInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-30px);  /* Start slightly left */
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);      /* Settle in place */
+  }
+}
+
+/* 📱 RESPONSIVE TWEAKS */
+@media (max-width: 900px) {
+  .content {
+    flex-direction: column;
+    padding: 60px 40px;
+    text-align: center;
+  }
+
+  .card, .text-section {
+    flex: unset;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .HeadName h2 {
+    font-size: 2.2rem;
+  }
+
+  .HeadName h4 {
+    font-size: 1.1rem;
+  }
+
+  .about {
+    max-width: 90%;
+  }
+}
