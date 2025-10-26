@@ -1,66 +1,96 @@
-import React, { useState } from 'react';
+import React from 'react';
 import './Navbar.css';
 import { Link } from 'react-router-dom';
+import StaggeredMenu from './StaggeredMenu';
 
 function Navbar() {
-  const [isOpen, setIsOpen] = useState(false);
+  const menuItems = [
+    { label: 'Home', ariaLabel: 'Go to home page', link: '/' },
+    { label: 'Skills', ariaLabel: 'View my skills', link: '/skills' },
+    { label: 'Projects', ariaLabel: 'View my projects', link: '/projects' },
+    { label: 'Certificates', ariaLabel: 'View certificates', link: '/certificates' },
+    { label: 'Games', ariaLabel: 'Play games', link: '/games' },
+    { label: 'Contact', ariaLabel: 'Get in touch', link: '/contact' }
+  ];
 
-  const toggleMenu = () => {
-    setIsOpen(!isOpen);
-  };
-
-  const closeMenu = () => {
-    setIsOpen(false);
-  };
+  const socialItems = [
+    { label: 'GitHub', link: 'https://github.com/yourusername' },
+    { label: 'LinkedIn', link: 'https://linkedin.com/in/yourusername' },
+    { label: 'Instagram', link: 'https://instagram.com/yourusername' },
+    { label: 'Twitter', link: 'https://twitter.com/yourusername' }
+  ];
 
   return (
-    <nav className="navbar">
-      <div className="navbar-container">
-        <Link to="/" className="navbar-logo" onClick={closeMenu}>
-          MDJ
-        </Link>
+    <>
+      {/* Desktop Navbar */}
+      <nav className="navbar desktop-nav">
+        <div className="navbar-container">
+          <Link to="/" className="navbar-logo">
+            MDJ
+          </Link>
 
-        <div 
-          className={`hamburger ${isOpen ? 'active' : ''}`} 
-          onClick={toggleMenu}
-          aria-label="Toggle menu"
-        >
-          <span></span>
-          <span></span>
-          <span></span>
+          <ul className="nav-menu">
+            <li className="nav-item">
+              <Link to="/skills" className="nav-link">
+                Skills
+              </Link>
+            </li>
+            <li className="nav-item">
+              <Link to="/projects" className="nav-link">
+                Projects
+              </Link>
+            </li>
+            <li className="nav-item">
+              <Link to="/certificates" className="nav-link">
+                Certificates
+              </Link>
+            </li>
+            <li className="nav-item">
+              <Link to="/games" className="nav-link">
+                Games
+              </Link>
+            </li>
+            <li className="nav-item">
+              <Link to="/contact" className="nav-link">
+                Contact
+              </Link>
+            </li>
+          </ul>
+
+          <a 
+            href="/path-to-your-resume.pdf" 
+            className="resume-link" 
+            target="_blank" 
+            rel="noopener noreferrer"
+          >
+            Resume
+          </a>
         </div>
+      </nav>
 
-        <ul className={`nav-menu ${isOpen ? 'active' : ''}`}>
-          <li className="nav-item">
-            <Link to="/skills" className="nav-link" onClick={closeMenu}>
-              Skills
-            </Link>
-          </li>
-          <li className="nav-item">
-            <Link to="/projects" className="nav-link" onClick={closeMenu}>
-              Projects
-            </Link>
-          </li>
-          <li className="nav-item">
-            <Link to="/certificates" className="nav-link" onClick={closeMenu}>
-              Certificates
-            </Link>
-          </li>
-          <li className="nav-item">
-            <Link to="/games" className="nav-link" onClick={closeMenu}>
-              Games
-            </Link>
-          </li>
-          <li className="nav-item">
-            <Link to="/contact" className="nav-link" onClick={closeMenu}>
-              Contact
-            </Link>
-          </li>
-        </ul>
+      {/* Mobile Staggered Menu */}
+      <div className="mobile-menu-wrapper">
+        <StaggeredMenu
+          position="right"
+          items={menuItems}
+          socialItems={socialItems}
+          displaySocials={true}
+          displayItemNumbering={true}
+          menuButtonColor="#fff"
+          openMenuButtonColor="#000"
+          changeMenuColorOnOpen={true}
+          colors={['#2632dfea', '#4051e8ea']}
+          logoText="MDJ" // ✅ Pass MDJ as text instead of logo
+          accentColor="#6049ea"
+          isFixed={true}
+          onMenuOpen={() => console.log('Menu opened')}
+          onMenuClose={() => console.log('Menu closed')}
+        />
       </div>
-    </nav>
+    </>
   );
 }
 
 export default Navbar;
+
 
