@@ -14,7 +14,7 @@ import Contact from "./Contact.jsx";
 
 import TicTacToe from './TicTacToe.jsx';
 import BubbleGame from "./Bubblegame.jsx";
-import NodeIcon from "./assets/Node.png";
+import NodeIcon from "./assets/node.png";
 import ReactIcon from "./assets/react.png";
 import MongoIcon from "./assets/mongo.png";
 import ExpressIcon from "./assets/express.png";
