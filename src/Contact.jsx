@@ -46,7 +46,6 @@ const Contact = () => {
 
   return (
     <section className="contact-section">
-      <div className="stars"></div>
 
       <h1 className="contact-title">
         Get In <span className="highlight">Touch</span>

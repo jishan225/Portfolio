@@ -12,6 +12,7 @@ import "./FallingText.css";
 import { img } from "motion/react-client";
 import Contact from "./Contact.jsx";
 
+
 import TicTacToe from './TicTacToe.jsx';
 import BubbleGame from "./Bubblegame.jsx";
 import NodeIcon from "./assets/node.png";
@@ -39,10 +40,10 @@ import Cert3 from './assets/Cert3.jpeg';
 const Layout = ({ children }) => (
   <>
     <Navbar />
-    {children}
+        {children}
+    
   </>
 );
-
 
 const TechBadge = ({ icon, name }) => (
   <span className="tech-badge">
