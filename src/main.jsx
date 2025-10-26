@@ -10,6 +10,10 @@ import Folder from "./Folder";
 import "./Folder.css";
 import "./FallingText.css";
 import { img } from "motion/react-client";
+import Contact from "./Contact.jsx";
+
+import TicTacToe from './TicTacToe.jsx';
+import BubbleGame from "./Bubblegame.jsx";
 import NodeIcon from "./assets/Node.png";
 import ReactIcon from "./assets/react.png";
 import MongoIcon from "./assets/mongo.png";
@@ -24,6 +28,9 @@ import CppIcon from "./assets/cpp.png";
 import PythonIcon from "./assets/python.png";
 import ApiIcon from "./assets/api.png";
 import TailwindIcon from "./assets/tailwind.png";
+import TicTacToeIcon from "./assets/tictactoe.png";
+import BubbleGameIcon from "./assets/BubbleGameIcon.png";
+
 
 import Cert1 from './assets/Cert1.jpeg';
 import Cert2 from './assets/Cert2.jpg';
@@ -111,10 +118,31 @@ const router = createBrowserRouter([
   path: "/games",
   element: (
     <Layout>
-      
+      <div className="games-container">
+        <Folder 
+          size={2} 
+          color="#5227FF" 
+          className="custom-folder"
+          images={[TicTacToeIcon, BubbleGameIcon, null]}  // ✅ Add this line - papers need images to render
+          games={[
+            <TicTacToe />,  // Left paper - TicTacToe
+            <BubbleGame />,          // Middle paper
+            null            // Right paper
+          ]}
+        />
+      </div>
     </Layout>
   )
 },
+{
+  path: "/contact",
+  element: (
+    <Layout>
+      <Contact />
+    </Layout>
+  )
+}
+
 ]);
 
 createRoot(document.getElementById("root")).render(

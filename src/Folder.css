@@ -1,14 +1,59 @@
 :root {
-  --folder-color: #70a1ff;
-  --folder-back-color: #4785ff;
+  --folder-color: #5227FF;
+  --folder-back-color: #5227FF;
   --paper-1: #e6e6e6;
   --paper-2: #f2f2f2;
   --paper-3: #ffffff;
 }
 
+/* Animation Keyframes - Define once at the top */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateX(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Folder Styles */
 .folder {
-  transition: all 0.2s ease-in;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   cursor: pointer;
+  animation: fadeInUp 0.6s ease-out;
 }
 
 .folder:not(.folder--click):hover {
@@ -33,6 +78,7 @@
 
 .folder.open .paper:nth-child(1) {
   transform: translate(-120%, -70%) rotateZ(-15deg);
+  transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
 .folder.open .paper:nth-child(1):hover {
@@ -42,6 +88,7 @@
 .folder.open .paper:nth-child(2) {
   transform: translate(10%, -70%) rotateZ(15deg);
   height: 80%;
+  transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) 0.1s;
 }
 
 .folder.open .paper:nth-child(2):hover {
@@ -51,6 +98,7 @@
 .folder.open .paper:nth-child(3) {
   transform: translate(-50%, -100%) rotateZ(5deg);
   height: 80%;
+  transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) 0.2s;
 }
 
 .folder.open .paper:nth-child(3):hover {
@@ -95,7 +143,7 @@
   height: 80%;
   background: var(--paper-1);
   border-radius: 10px;
-  transition: all 0.3s ease-in-out;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .paper:nth-child(2) {
@@ -118,30 +166,35 @@
   background: var(--folder-color);
   border-radius: 5px 10px 10px 10px;
   transform-origin: bottom;
-  transition: all 0.3s ease-in-out;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
+/* Certificates Container */
 .certificates-container {
   position: relative;
   z-index: 10;
-  min-height: calc(100vh - 150px);
+  min-height: 100vh;
+  width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 60px 20px;
-  padding-top: 320px; /* Move folder down */
-    animation: fadeInLeft 1.2s ease-in-out;
+  padding-top: 100px;
+  animation: fadeIn 1s ease-in-out;
 }
-@keyframes fadeInLeft {
-  from {
-    opacity: 0;
-    transform: translateX(-30px);  /* Start slightly left */
-  }
-  to {
-    opacity: 1;
-    transform: translateX(0);      /* Settle in place */
-  }
+
+/* Games Container */
+.games-container {
+  position: relative;
+  z-index: 10;
+  min-height: 100vh;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-top: 100px;
+  animation: fadeIn 1s ease-in-out;
 }
+
 .custom-folder {
   transform: scale(4);
   transform-origin: center;
@@ -149,7 +202,7 @@
   z-index: 10;
 }
 
-/* Add smooth transition to navbar */
+/* Navbar */
 .navbar {
   transition: opacity 0.3s ease-in-out, pointer-events 0.3s ease-in-out;
 }
@@ -161,11 +214,11 @@
   left: 0;
   width: 100vw;
   height: 100vh;
-  background: rgba(0, 0, 0, 0.45); /* Darker background */
+  background: rgba(0, 0, 0, 0.45);
   display: flex;
   justify-content: center;
   align-items: center;
-  z-index: 9999; /* Higher z-index than navbar */
+  z-index: 9999;
   animation: fadeIn 0.3s ease-in-out;
 }
 
@@ -173,61 +226,104 @@
   position: relative;
   max-width: 90%;
   max-height: 90%;
-  animation: scaleIn 0.3s ease-in-out;
+  animation: scaleIn 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
 .modal-image {
   max-width: 100%;
-  max-height: 80vh; 
+  max-height: 80vh;
   object-fit: contain;
   border-radius: 10px;
   box-shadow: 0 10px 50px rgba(0, 0, 0, 0.5);
 }
 
+/* Game Modal */
+.game-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.45);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 99999;
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+.game-modal .modal-content {
+  animation: scaleIn 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+/* Close Button */
 .close-button {
   position: absolute;
-  top: -40px;
+  top: -50px;
   right: 0;
   background: rgba(255, 255, 255, 0.2);
-  border: 2px solid rgba(255, 255, 255, 0.4);
-  color: white;
-  font-size: 2rem;
-  width: 40px;
-  height: 40px;
+  border: 2px solid rgba(59, 130, 246, 0.4);
+  color: #3b82f6;
+  font-size: 2.5rem;
+  width: 50px;
+  height: 50px;
   border-radius: 50%;
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   display: flex;
   align-items: center;
   justify-content: center;
   backdrop-filter: blur(10px);
+  z-index: 100001;
+  line-height: 1;
+  padding: 0;
+  font-weight: 300;
+  box-shadow: 0 0 20px rgba(59, 130, 246, 0.3);
 }
 
 .close-button:hover {
-  background: rgba(255, 255, 255, 0.3);
-  transform: rotate(90deg);
+  background: rgba(59, 130, 246, 0.3);
+  border-color: rgba(59, 130, 246, 0.7);
+  color: white;
+  transform: rotate(90deg) scale(1.1);
+  box-shadow: 0 0 40px rgba(59, 130, 246, 0.6);
 }
 
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-}
-
-@keyframes scaleIn {
-  from {
-    opacity: 0;
-    transform: scale(0.8);
-  }
-  to {
-    opacity: 1;
-    transform: scale(1);
-  }
+.close-button:active {
+  transform: rotate(90deg) scale(0.95);
 }
 
 .paper:hover {
   filter: brightness(1.1);
+  transition: filter 0.2s ease;
 }
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .custom-folder {
+    transform: scale(3);
+  }
+
+  .close-button {
+    top: -45px;
+    width: 45px;
+    height: 45px;
+    font-size: 2rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .custom-folder {
+    transform: scale(2);
+  }
+
+  .close-button {
+    top: -40px;
+    width: 40px;
+    height: 40px;
+    font-size: 1.8rem;
+  }
+}
+
