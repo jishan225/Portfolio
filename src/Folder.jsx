@@ -19,7 +19,15 @@ const darkenColor = (hex, percent) => {
   return '#' + ((1 << 24) + (r << 16) + (g << 8) + b).toString(16).slice(1).toUpperCase();
 };
 
-const Folder = ({ color = '#5227FF', size = 1, images = [], games = [], className = '' }) => {
+const Folder = ({ 
+  color = '#3300ffff', 
+  size = 1, 
+  images = [], 
+  games = [], 
+  className = '',
+  title = '',
+  description = ''
+}) => {
   const maxItems = 3;
   const papers = images.slice(0, maxItems);
   while (papers.length < maxItems) {
@@ -31,7 +39,8 @@ const Folder = ({ color = '#5227FF', size = 1, images = [], games = [], classNam
   const [selectedGame, setSelectedGame] = useState(null);
   const [paperOffsets, setPaperOffsets] = useState(Array.from({ length: maxItems }, () => ({ x: 0, y: 0 })));
 
-  const folderBackColor = darkenColor(color, 0.08);
+  // ✅ Changed: Back color now matches front color exactly
+  const folderBackColor = color; // Instead of: darkenColor(color, 0.08);
   const paper1 = darkenColor('#ffffff', 0.1);
   const paper2 = darkenColor('#ffffff', 0.05);
   const paper3 = '#ffffff';
@@ -45,16 +54,11 @@ const Folder = ({ color = '#5227FF', size = 1, images = [], games = [], classNam
 
   const handlePaperClick = (e, image, index) => {
     e.stopPropagation();
-    
-    // ✅ Add modal-open class to body
     document.body.classList.add('modal-open');
 
-    // If there's a game for this paper, open the game
     if (games && games[index]) {
       setSelectedGame(games[index]);
-    } 
-    // Otherwise, open the image
-    else if (image) {
+    } else if (image) {
       setSelectedImage(image);
     }
   };
@@ -62,8 +66,6 @@ const Folder = ({ color = '#5227FF', size = 1, images = [], games = [], classNam
   const closeModal = () => {
     setSelectedImage(null);
     setSelectedGame(null);
-    
-    // ✅ Remove modal-open class from body
     document.body.classList.remove('modal-open');
   };
 
@@ -91,7 +93,7 @@ const Folder = ({ color = '#5227FF', size = 1, images = [], games = [], classNam
 
   const folderStyle = {
     '--folder-color': color,
-    '--folder-back-color': folderBackColor,
+    '--folder-back-color': folderBackColor, // ✅ Now uses same color as front
     '--paper-1': paper1,
     '--paper-2': paper2,
     '--paper-3': paper3
@@ -102,39 +104,51 @@ const Folder = ({ color = '#5227FF', size = 1, images = [], games = [], classNam
 
   return (
     <>
-      <div style={scaleStyle} className={className}>
-        <div className={folderClassName} style={folderStyle} onClick={handleClick}>
-          <div className="folder__back">
-            {papers.map((image, i) => (
-              <div
-                key={i}
-                className={`paper paper-${i + 1}`}
-                onClick={(e) => handlePaperClick(e, image, i)}
-                onMouseMove={e => handlePaperMouseMove(e, i)}
-                onMouseLeave={e => handlePaperMouseLeave(e, i)}
-                style={{
-                  ...(open
-                    ? {
-                        '--magnet-x': `${paperOffsets[i]?.x || 0}px`,
-                        '--magnet-y': `${paperOffsets[i]?.y || 0}px`
-                      }
-                    : {}),
-                  ...(image && {
-                    backgroundImage: `url(${image})`,
-                    backgroundSize: 'cover',
-                    backgroundPosition: 'center',
-                    backgroundRepeat: 'no-repeat'
-                  }),
-                  cursor: 'pointer'
-                }}
-              >
-                {!image && <div className="empty-paper"></div>}
-              </div>
-            ))}
-            <div className="folder__front"></div>
-            <div className="folder__front right"></div>
+      <div className={`folder-wrapper ${className}`}>
+        {/* Title at top left corner */}
+        {title && (
+          <h3 className="folder-title">{title}</h3>
+        )}
+
+        <div style={scaleStyle}>
+          <div className={folderClassName} style={folderStyle} onClick={handleClick}>
+            <div className="folder__back">
+              {papers.map((image, i) => (
+                <div
+                  key={i}
+                  className={`paper paper-${i + 1}`}
+                  onClick={(e) => handlePaperClick(e, image, i)}
+                  onMouseMove={e => handlePaperMouseMove(e, i)}
+                  onMouseLeave={e => handlePaperMouseLeave(e, i)}
+                  style={{
+                    ...(open
+                      ? {
+                          '--magnet-x': `${paperOffsets[i]?.x || 0}px`,
+                          '--magnet-y': `${paperOffsets[i]?.y || 0}px`
+                        }
+                      : {}),
+                    ...(image && {
+                      backgroundImage: `url(${image})`,
+                      backgroundSize: 'cover',
+                      backgroundPosition: 'center',
+                      backgroundRepeat: 'no-repeat'
+                    }),
+                    cursor: 'pointer'
+                  }}
+                >
+                  {!image && <div className="empty-paper"></div>}
+                </div>
+              ))}
+              <div className="folder__front"></div>
+              <div className="folder__front right"></div>
+            </div>
           </div>
         </div>
+
+        {/* Description below folder */}
+        {description && (
+          <p className="folder-description">{description}</p>
+        )}
       </div>
 
       {/* Image Modal */}

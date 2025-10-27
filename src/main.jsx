@@ -12,6 +12,7 @@ import "./FallingText.css";
 import { img } from "motion/react-client";
 import Contact from "./Contact.jsx";
 import Footer from "./Footer.jsx";
+import Project from "./Project.jsx";
 
 
 import TicTacToe from './TicTacToe.jsx';
@@ -108,9 +109,11 @@ const router = createBrowserRouter([
       <div className="certificates-container">
         <Folder 
           size={2} 
-          color="#5227FF" 
+          color="#3200fcff" 
           className="custom-folder"
           images={[Cert1, Cert2, Cert3]}
+          title="Certificates"
+          description="Click to open and view my certificates"
         />
       </div>
     </Layout>
@@ -123,14 +126,16 @@ const router = createBrowserRouter([
       <div className="games-container">
         <Folder 
           size={2} 
-          color="#5227FF" 
+          color="#1900ffff" 
           className="custom-folder"
-          images={[TicTacToeIcon, BubbleGameIcon, null]}  // ✅ Add this line - papers need images to render
+          images={[TicTacToeIcon, BubbleGameIcon, null]}
           games={[
-            <TicTacToe />,  // Left paper - TicTacToe
-            <BubbleGame />,          // Middle paper
-            null            // Right paper
+            <TicTacToe />,    // Left paper - TicTacToe
+            <BubbleGame />,   // Middle paper - BubbleGame
+            null              // Right paper - empty
           ]}
+          title="Games"
+          description="Click to explore and play interactive games"
         />
       </div>
     </Layout>
@@ -141,6 +146,13 @@ const router = createBrowserRouter([
   element: (
     <Layout>
       <Contact />
+    </Layout>
+  )
+},{
+  path: "/projects",
+  element: (
+    <Layout>
+      <Project/>
     </Layout>
   )
 }
