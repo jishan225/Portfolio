@@ -2,17 +2,11 @@ import React from "react";
 import TiltedCard from "./TiltedCard";
 import cardImg from "./assets/CardImg.jpeg";
 import "./TiltedCard.css";
-
 import "./App.css";
-
-
 
 function App() {
   return (
-
     <div className="container">
-    
-
       <div className="content">
         <div className="card">
           <TiltedCard
@@ -21,7 +15,7 @@ function App() {
             captionText="Md Jishan"
             containerHeight="300px"
             containerWidth="300px"
-            imageHeight="400px"
+            imageHeight="350px"
             imageWidth="350px"
             rotateAmplitude={12}
             scaleOnHover={1.2}
@@ -33,20 +27,21 @@ function App() {
         <div className="text-section">
           <div className="HeadName">
             <h2>
-              👋 Hii, I'm <span className="highlight">Md Jishan</span>
+              Hello, I'm <span className="highlight">Md Jishan</span>
             </h2>
-            <h4>I'm a Full Stack Developer</h4>
+            <h4>Full-Stack Developer & AI Enthusiast</h4>
           </div>
-
           <div className="about">
             <h4>About</h4>
             <hr />
             <p>
-              A passionate Computer Science student and web developer who loves
-              building creative and functional digital experiences. I enjoy
-              turning ideas into reality through code, exploring new
-              technologies, and constantly learning. Outside coding, I’m a movie
-              lover, foodie, and traveler who values creativity and growth.
+              A final-year Computer Science and Engineering student, web
+              developer, and AI enthusiast with hands-on experience in the MERN
+              stack. Passionate about building innovative and user-friendly web
+              applications, transforming ideas into impactful digital solutions
+              through clean and efficient code. Always eager to learn, explore
+              new technologies, and combine creativity with problem-solving to
+              deliver meaningful experiences.
             </p>
           </div>
         </div>
@@ -56,3 +51,4 @@ function App() {
 }
 
 export default App;
+

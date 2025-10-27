@@ -28,12 +28,13 @@
 
 .navbar-container {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-between; /* Keeps logo left, center/right balanced */
   align-items: center;
   height: 100%;
   padding: 0 40px;
   max-width: 1400px;
   margin: 0 auto;
+  position: relative; /* Anchor for mobile elements */
 }
 
 .navbar-logo {
@@ -52,6 +53,7 @@
   transform: scale(1.05);
 }
 
+/* New: Center nav-menu as flex child, not absolute */
 .nav-menu {
   display: flex;
   list-style: none;
@@ -60,9 +62,8 @@
   padding: 0;
   align-items: center;
   justify-content: center;
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
+  flex: 1; /* Takes available space in center */
+  position: relative; /* Keeps it in flow */
 }
 
 .nav-item {
@@ -99,65 +100,118 @@
   width: 80%;
 }
 
+/* New: Right section wrapper for resume + mobile menu */
+.right-section {
+  display: flex;
+  align-items: center;
+  gap: 15px; /* Space between resume and hamburger */
+  flex-shrink: 0;
+  position: relative;
+}
+
 .resume-link {
   color: #ffffff;
   text-decoration: none;
-  font-size: 1rem;
-  font-weight: bold;
-  padding: 8px 20px;
-  background: linear-gradient(135deg, #6049ea, #8b7cff);
-  border-radius: 20px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  padding: 10px 18px 10px 22px;
+  background: #1a1a2e;
+  border: 2px solid rgba(255, 255, 255, 0.25);
+  border-radius: 6px;
   transition: all 0.3s ease;
-  flex-shrink: 0;
   z-index: 1001;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  position: relative;
+}
+
+.resume-link::after {
+  content: "↗";
+  font-size: 1.1rem;
+  display: inline-block;
+  line-height: 1;
 }
 
 .resume-link:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 5px 15px rgba(96, 73, 234, 0.4);
-  background: linear-gradient(135deg, #7c5ff0, #9c8eff);
+  border-color: rgba(255, 255, 255, 0.5);
+  background: #252540;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
 }
 
-/* ✅ Mobile Menu Wrapper - Allow clicks through when closed */
 .mobile-menu-wrapper {
   display: none;
-  pointer-events: none; /* ✅ CRITICAL: Allow scrolling through wrapper */
+  pointer-events: none;
+  order: 2; /* Ensures it follows resume/menu in flex flow */
+  position: relative; /* Positions after right-section items */
+  right: auto; /* Override any default right positioning */
+  margin-left: 10px; /* Space after menu/resume */
 }
 
-/* ✅ Enable pointer events only for menu button and panel */
 .mobile-menu-wrapper * {
   pointer-events: auto;
 }
 
+/* Desktop: Hide mobile wrapper */
+@media screen and (min-width: 969px) {
+  .mobile-menu-wrapper {
+    display: none !important;
+  }
+  
+  .right-section {
+    display: flex; /* Show resume only */
+  }
+}
+
 /* Responsive Design */
 @media screen and (max-width: 968px) {
-  /* Hide desktop navbar */
+  /* Hide desktop nav items */
   .desktop-nav {
     display: none;
   }
 
-  /* Show mobile staggered menu */
+  /* Show mobile staggered menu after hidden nav position */
   .mobile-menu-wrapper {
     display: block;
+    position: relative;
+    right: 0; /* Pull to flow after logo/right-section */
+    margin-left: auto; /* Push to right but after elements */
   }
   
-  /* ✅ Add top padding to prevent content hiding under menu button */
+  /* Add top padding to prevent content hiding under fixed navbar */
   body {
     padding-top: 55px;
+  }
+  
+  /* Adjust container for mobile flow */
+  .navbar-container {
+    justify-content: flex-start; /* Logo left, hamburger follows */
+    gap: 20px; /* Space between elements */
+  }
+  
+  .right-section {
+    display: flex;
+    gap: 10px; /* Resume + hamburger close together */
   }
 }
 
 @media screen and (max-width: 480px) {
-  .mobile-menu-wrapper {
-    display: block;
+  .navbar-container {
+    padding: 0 20px; /* Reduce padding on small screens */
   }
   
   body {
     padding-top: 55px;
   }
+  
+  .mobile-menu-wrapper {
+    display: block;
+    margin-left: 5px; /* Tighter spacing */
+  }
 }
 
-/* ✅ Hide navbar when modal is open */
+/* Hide navbar when modal is open */
 body.modal-open .navbar,
 body.modal-open .desktop-nav,
 body.modal-open .mobile-menu-wrapper {
@@ -166,4 +220,3 @@ body.modal-open .mobile-menu-wrapper {
   visibility: hidden !important;
   transition: opacity 0.3s ease-out;
 }
-

@@ -379,21 +379,7 @@ export const StaggeredMenu = ({
         })()}
       </div>
       <header className="staggered-menu-header" aria-label="Main navigation header">
-        <div className="sm-logo" aria-label="Logo">
-          {/* ✅ Conditionally render text or image */}
-          {logoText ? (
-            <span className="sm-logo-text">{logoText}</span>
-          ) : (
-            <img
-              src={logoUrl || '/src/assets/logos/reactbits-gh-white.svg'}
-              alt="Logo"
-              className="sm-logo-img"
-              draggable={false}
-              width={110}
-              height={24}
-            />
-          )}
-        </div>
+
         <button
           ref={toggleBtnRef}
           className="sm-toggle"

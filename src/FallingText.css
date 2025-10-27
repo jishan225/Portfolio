@@ -80,3 +80,96 @@
   object-fit: contain;
   flex-shrink: 0;
 }
+/* Existing styles remain unchanged for desktop */
+
+/* Tablet and smaller screens: Reduce container height and spacing */
+@media screen and (max-width: 768px) {
+  .falling-text-container {
+    height: calc(100vh - 80px); /* Shorter height to account for mobile navbar */
+    margin-top: 80px; /* Match reduced navbar height */
+    padding-bottom: 60px; /* Less bottom padding */
+    letter-spacing: 1.5px; /* Slightly tighter letter spacing for text */
+  }
+
+  .falling-text-target {
+    font-size: 1.2rem; /* Base font reduction if not already set; adjust as needed */
+    letter-spacing: 1px; /* Compact uppercase text */
+  }
+
+  .word {
+    margin: 0 3px; /* Reduce word spacing */
+    font-size: 1rem; /* Scale down individual words */
+  }
+
+  .tech-badge {
+    padding: 3px 8px; /* Smaller badge padding */
+    margin-bottom: 6px;
+    margin-right: 4px;
+    font-size: 0.85rem; /* Smaller badge text */
+  }
+
+  .tech-icon {
+    width: 20px; /* Scale down icons */
+    height: 20px;
+  }
+
+  /* Animation adjustment: Softer slide on smaller screens */
+  @keyframes fadeInLeft {
+    from {
+      opacity: 0;
+      transform: translateX(-20px); /* Less aggressive slide */
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+}
+
+/* Mobile screens: Further reductions for small devices */
+@media screen and (max-width: 480px) {
+  .falling-text-container {
+    height: calc(100vh - 60px); /* Even shorter for tiny viewports */
+    margin-top: 10px;
+    padding-bottom: 40px; /* Minimal padding */
+    min-height: 80vh; /* Ensure minimum usable height */
+  }
+
+  .falling-text-target {
+    font-size: 1rem; /* Compact text for mobile */
+    letter-spacing: 0.5px; /* Tight spacing to fit words */
+    width: 95%; /* Slight width reduction to prevent overflow */
+  }
+
+  .word {
+    margin: 0 2px; /* Minimal word gaps */
+    font-size: 0.9rem; /* Smaller words to fit line */
+    transition: color 0.2s ease, transform 0.2s ease; /* Faster transitions */
+  }
+
+  .word:hover {
+    transform: scale(1.05); /* Subtler hover scale on touch devices */
+  }
+
+  .tech-badge {
+    padding: 2px 6px; /* Very small badges */
+    margin-bottom: 4px;
+    margin-right: 3px;
+    font-size: 0.75rem; /* Tiny text */
+    gap: 3px; /* Tighter icon-text gap */
+  }
+
+  .tech-icon {
+    width: 16px; /* Small icons */
+    height: 16px;
+  }
+
+
+  /* Ensure flex centering works on small screens */
+  .falling-text-container {
+    justify-content: center;
+    align-items: center;
+    text-align: center; /* Reinforce centering */
+  }
+}
+

@@ -9,7 +9,6 @@
   padding: 20px;
 }
 
-/* Optional translucent overlay for better readability */
 .container::before {
   content: "";
   position: absolute;
@@ -21,10 +20,10 @@
 .content {
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  padding: 0 150px;
+  justify-content: center;
+  padding: 0 100px;
   flex: 1;
-  gap: 60px;
+  gap: 80px;
   width: 100%;
   max-width: 1600px;
   margin: 0 auto;
@@ -32,13 +31,14 @@
 
 /* 🪞 LEFT CARD SECTION */
 .card {
-  flex: 1;
+  flex: 0 1 auto;
   display: flex;
   justify-content: center;
   align-items: center;
   animation: fadeInLeft 1.2s ease-in-out;
   min-width: 280px;
   max-width: 400px;
+  z-index: 1;
 }
 
 /* ✍️ RIGHT TEXT SECTION */
@@ -48,10 +48,11 @@
   flex-direction: column;
   justify-content: center;
   align-items: flex-start;
-  padding: 50px 80px;
+  padding: 20px 40px;
   color: #ffffff;
   animation: fadeInRight 1.2s ease-in-out;
   max-width: 700px;
+  z-index: 2;
 }
 
 /* 👋 INTRO HEADING */
@@ -63,16 +64,18 @@
 }
 
 .HeadName h2 {
-  font-size: 2.8rem;
+  font-size: 2.5rem;
   font-weight: 700;
   color: #ffffff;
   letter-spacing: 1px;
+  margin: 0;
 }
 
 .HeadName h4 {
   font-size: 1.3rem;
   color: #aaa;
   font-weight: 400;
+  margin: 0;
 }
 
 .highlight {
@@ -91,21 +94,23 @@
 .about h4 {
   font-size: 1.6rem;
   font-weight: 600;
-  color: #6049ea;
+  color: #3b82f6;
+  margin: 0;
 }
 
 .about hr {
   width: 80px;
-  border: 2px solid #6049ea;
+  border: 2px solid #3b82f6;
   border-radius: 5px;
   margin: 0;
 }
 
 .about p {
   font-size: 1.05rem;
-  line-height: 1.6;
+  line-height: 1.7;
   color: #ffffff;
   text-align: justify;
+  margin: 0;
 }
 
 /* ✨ ANIMATIONS */
@@ -131,61 +136,23 @@
   }
 }
 
-/* 💻 LARGE DESKTOP (1440px+) */
-@media (min-width: 1440px) {
-  .content {
-    padding: 0 200px;
-  }
-  
-  .HeadName h2 {
-    font-size: 3.2rem;
-  }
-  
-  .HeadName h4 {
-    font-size: 1.5rem;
-  }
-  
-  .about h4 {
-    font-size: 1.8rem;
-  }
-  
-  .about p {
-    font-size: 1.15rem;
-  }
-}
-
 /* 💻 DESKTOP (1200px - 1439px) */
 @media (max-width: 1439px) {
   .content {
-    padding: 0 100px;
+    padding: 0 80px;
+    gap: 60px;
   }
 }
 
 /* 📱 LAPTOP (1024px - 1199px) */
 @media (max-width: 1199px) {
   .content {
-    padding: 0 80px;
+    padding: 0 60px;
     gap: 50px;
   }
-  
+
   .text-section {
-    padding: 40px 60px;
-  }
-  
-  .HeadName h2 {
-    font-size: 2.5rem;
-  }
-  
-  .HeadName h4 {
-    font-size: 1.2rem;
-  }
-  
-  .about h4 {
-    font-size: 1.5rem;
-  }
-  
-  .about p {
-    font-size: 1rem;
+    padding: 20px 30px;
   }
 }
 
@@ -193,7 +160,7 @@
 @media (max-width: 1023px) {
   .content {
     flex-direction: column;
-    padding: 60px 40px;
+    padding: 80px 40px 40px 40px;
     text-align: center;
     gap: 50px;
   }
@@ -201,8 +168,10 @@
   .card {
     flex: unset;
     width: 100%;
-    max-width: 350px;
+    max-width: 320px;
+    min-width: 240px;
     justify-content: center;
+    margin-bottom: 0;
   }
 
   .text-section {
@@ -211,20 +180,13 @@
     max-width: 650px;
     justify-content: center;
     align-items: center;
-    padding: 30px 40px;
+    padding: 20px 40px;
+    margin-top: 40px;
   }
 
   .HeadName {
     align-items: center;
     text-align: center;
-  }
-
-  .HeadName h2 {
-    font-size: 2.0rem;
-  }
-
-  .HeadName h4 {
-    font-size: 1.2rem;
   }
 
   .about {
@@ -244,32 +206,18 @@
 /* 📱 TABLET PORTRAIT (768px - 899px) */
 @media (max-width: 899px) {
   .content {
-    padding: 50px 30px;
-    gap: 40px;
+    padding: 60px 30px 30px 30px;
+    gap: 45px;
   }
 
   .card {
-    max-width: 320px;
+    max-width: 300px;
+    min-width: 220px;
   }
 
   .text-section {
-    padding: 20px 30px;
-  }
-
-  .HeadName h2 {
-    font-size: 2.2rem;
-  }
-
-  .HeadName h4 {
-    font-size: 1.1rem;
-  }
-
-  .about h4 {
-    font-size: 1.4rem;
-  }
-
-  .about p {
-    font-size: 0.95rem;
+    padding: 15px 30px;
+    margin-top: 40px;
   }
 
   .about hr {
@@ -281,20 +229,43 @@
 @media (max-width: 767px) {
   .container {
     padding: 15px;
+    min-height: 100vh;
   }
 
   .content {
-    padding: 40px 20px;
-    gap: 35px;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    text-align: center;
+    padding: 50px 25px 30px 25px;
+    gap: 50px;
+    min-height: auto;
   }
 
   .card {
-    max-width: 300px;
+    max-width: 280px;
+    min-width: 200px;
+    margin: 0 auto;
+    flex-shrink: 0;
   }
 
   .text-section {
-    padding: 15px 20px;
+    align-items: center;
+    text-align: center;
+    padding: 20px;
     max-width: 100%;
+    width: 100%;
+    margin-top: 40px;
+  }
+
+  .HeadName,
+  .about {
+    align-items: center;
+    text-align: center;
+  }
+
+  .about hr {
+    margin: 0 auto;
   }
 
   .HeadName {
@@ -302,20 +273,8 @@
     margin-bottom: 25px;
   }
 
-  .HeadName h2 {
-    font-size: 2rem;
-  }
-
-  .HeadName h4 {
-    font-size: 1rem;
-  }
-
   .about {
     gap: 8px;
-  }
-
-  .about h4 {
-    font-size: 1.3rem;
   }
 
   .about hr {
@@ -324,137 +283,131 @@
   }
 
   .about p {
-    font-size: 0.9rem;
-    line-height: 1.5;
+    text-align: center;
   }
 }
 
 /* 📱 MOBILE PORTRAIT (480px - 639px) */
 @media (max-width: 639px) {
   .content {
-    padding: 30px 15px;
-    gap: 30px;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    text-align: center;
+    padding: 40px 20px 25px 20px;
+    gap: 55px;
   }
 
   .card {
-    max-width: 280px;
+    max-width: 260px;
+    min-width: 180px;
+    flex-shrink: 0;
   }
 
   .text-section {
-    padding: 10px 15px;
-  }
-
-  .HeadName h2 {
-    font-size: 1.8rem;
-  }
-
-  .HeadName h4 {
-    font-size: 0.95rem;
-  }
-
-  .about h4 {
-    font-size: 1.2rem;
-  }
-
-  .about p {
-    font-size: 0.85rem;
+    align-items: center;
+    text-align: center;
+    padding: 15px;
+    width: 100%;
+    margin-top: 40px;
   }
 
   .about hr {
     width: 50px;
+    margin: 0 auto;
+  }
+
+  .about p {
+    text-align: center;
   }
 }
 
 /* 📱 SMALL MOBILE (360px - 479px) */
-/* 📱 SMALL MOBILE (360px - 479px) */
 @media (max-width: 479px) {
   .container {
     padding: 10px;
+    min-height: 100vh;
   }
 
   .content {
-    padding: 25px 10px;
-    gap: 25px;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    text-align: center;
+    padding: 35px 15px 20px 15px;
+    gap: 60px;
   }
 
   .card {
-    max-width: 250px;
+    max-width: 240px;
+    min-width: 160px;
+    margin: 0 auto;
+    flex-shrink: 0;
   }
 
   .text-section {
-    padding: 8px 12px;
-    margin-top: 30px; /* ✅ Push text section down */
+    align-items: center;
+    text-align: center;
+    padding: 12px;
+    width: 100%;
+    margin-top: 40px;
   }
 
   .HeadName {
     gap: 5px;
     margin-bottom: 20px;
-    margin-top: 100px; /* ✅ Additional spacing from top */
-  }
-
-  .HeadName h2 {
-    font-size: 1.6rem;
-    letter-spacing: 0.5px;
-  }
-
-  .HeadName h4 {
-    font-size: 0.9rem;
   }
 
   .about {
     gap: 6px;
-    margin-top: 15px; /* ✅ Push about section down */
-  }
-
-  .about h4 {
-    font-size: 1.1rem;
   }
 
   .about hr {
     width: 45px;
     border-width: 1.5px;
+    margin: 0 auto;
   }
 
   .about p {
-    font-size: 0.8rem;
-    line-height: 1.4;
+    text-align: center;
   }
 }
-
 
 /* 📱 EXTRA SMALL MOBILE (320px - 359px) */
 @media (max-width: 359px) {
   .content {
-    padding: 20px 8px;
-    gap: 20px;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    text-align: center;
+    padding: 30px 12px 20px 12px;
+    gap: 65px;
   }
 
   .card {
-    max-width: 230px;
+    max-width: 220px;
+    min-width: 140px;
+    flex-shrink: 0;
   }
 
   .text-section {
-    padding: 6px 10px;
-  }
-
-  .HeadName h2 {
-    font-size: 1.5rem;
-  }
-
-  .HeadName h4 {
-    font-size: 0.85rem;
-  }
-
-  .about h4 {
-    font-size: 1rem;
+    align-items: center;
+    text-align: center;
+    padding: 10px;
+    width: 100%;
+    margin-top: 40px;
   }
 
   .about hr {
     width: 40px;
+    margin: 0 auto;
   }
 
   .about p {
-    font-size: 0.75rem;
+    text-align: center;
   }
 }
+
+
+
 
