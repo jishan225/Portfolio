@@ -1,50 +1,51 @@
 .falling-text-container {
   position: relative;
   width: 100%;
-  height: calc(100vh - 110px);
-  margin-top: 110px;
-  padding-bottom: 100px; /* Shift content upward */
+  min-height: 100vh;
+  height: 100dvh; /* Use dynamic viewport height */
+  margin: 0;
+  padding: 0;
   cursor: pointer;
-  text-align: center;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   background: radial-gradient(circle at center, #0a0a0a00, #00000000);
-   animation: fadeInLeft 1.2s ease-in-out;
- 
+  animation: fadeInLeft 1.2s ease-in-out;
+  overflow: hidden; /* Critical for containing falling elements */
 }
 
 @keyframes fadeInLeft {
   from {
     opacity: 0;
-    transform: translateX(-30px);  /* Start slightly left */
+    transform: translateX(-30px);
   }
   to {
     opacity: 1;
-    transform: translateX(0);      /* Settle in place */
+    transform: translateX(0);
   }
 }
 
-
-
-
 .falling-text-target {
-  display: inline-block;
+  display: flex;
+  flex-wrap: wrap; /* Allow badges to wrap on smaller screens */
+  justify-content: center; /* Center horizontally */
+  align-items: center; /* Center vertically */
+  gap: 8px; /* Consistent spacing between badges */
   color: white;
-  text-transform: uppercase;
-  letter-spacing: 2px;
-  width: 100%; /* Full width */
+  width: 90%; /* Prevent edge touching */
+  max-width: 800px; /* Limit maximum width for large screens */
   text-align: center;
 }
 
 .word {
   display: inline-block;
-  margin: 0 4px;
+  margin: 0;
   user-select: none;
+  font-size: clamp(4rem, 10vw, 6rem); /* Much larger: 6rem min, 12vw preferred, 8rem max */
   transition: color 0.3s ease, transform 0.3s ease;
+  position: relative;
 }
-
 .word:hover {
   transform: scale(1.1);
 }
@@ -60,116 +61,92 @@
   left: 0;
   width: 100%;
   height: 100%;
+  overflow: hidden; /* Hide any canvas overflow */
+  pointer-events: none; /* Allow clicks to pass through */
 }
 
 .tech-badge {
   display: inline-flex;
   align-items: center;
-  gap: 4px; /* Reduced from 6px */
-  padding: 4px 10px; /* Reduced from 6px 12px */
-  border-radius: 6px; /* Reduced from 8px */
+  gap: clamp(4px, 1vw, 8px); /* Increased responsive gap */
+  padding: clamp(6px, 1vw, 8px) clamp(12px, 3vw, 20px); /* Larger padding for bigger text */
+  border-radius: 8px; /* Slightly larger border radius */
   background: rgba(255, 255, 255, 0.1);
   white-space: nowrap;
-  margin-bottom: 8px; /* Reduced from 10px */
-  margin-right: 6px; /* Add horizontal spacing */
+  font-size: clamp(1.2rem, 4vw, 1.8rem); /* Much larger badge text */
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(10px);
 }
 
 .tech-icon {
-  width: 24px; /* Reduced from 35px */
-  height: 24px; /* Reduced from 35px */
+  width: clamp(24px, 5vw, 32px); /* Larger icons to match text */
+  height: clamp(24px, 5vw, 32px);
   object-fit: contain;
   flex-shrink: 0;
 }
-/* Existing styles remain unchanged for desktop */
 
-/* Tablet and smaller screens: Reduce container height and spacing */
+/* Tablet and smaller screens */
 @media screen and (max-width: 768px) {
   .falling-text-container {
-    height: calc(100vh - 80px); /* Shorter height to account for mobile navbar */
-    margin-top: 80px; /* Match reduced navbar height */
-    padding-bottom: 60px; /* Less bottom padding */
-    letter-spacing: 1.5px; /* Slightly tighter letter spacing for text */
+    height: 100dvh;
+    padding: 20px;
   }
 
   .falling-text-target {
-    font-size: 1.2rem; /* Base font reduction if not already set; adjust as needed */
-    letter-spacing: 1px; /* Compact uppercase text */
+    gap: 8px; /* Larger gap */
+    width: 95%;
+    max-width: none;
   }
 
   .word {
-    margin: 0 3px; /* Reduce word spacing */
-    font-size: 1rem; /* Scale down individual words */
+    font-size: clamp(2rem, 8vw, 3.5rem); /* Larger for tablets */
   }
 
   .tech-badge {
-    padding: 3px 8px; /* Smaller badge padding */
-    margin-bottom: 6px;
-    margin-right: 4px;
-    font-size: 0.85rem; /* Smaller badge text */
+    padding: clamp(6px, 2.5vw, 10px) clamp(10px, 3vw, 16px);
+    font-size: clamp(1rem, 5vw, 1.4rem); /* Bigger badge text */
   }
 
   .tech-icon {
-    width: 20px; /* Scale down icons */
-    height: 20px;
-  }
-
-  /* Animation adjustment: Softer slide on smaller screens */
-  @keyframes fadeInLeft {
-    from {
-      opacity: 0;
-      transform: translateX(-20px); /* Less aggressive slide */
-    }
-    to {
-      opacity: 1;
-      transform: translateX(0);
-    }
+    width: clamp(20px, 6vw, 28px);
+    height: clamp(20px, 6vw, 28px);
   }
 }
 
-/* Mobile screens: Further reductions for small devices */
+/* Mobile screens */
 @media screen and (max-width: 480px) {
   .falling-text-container {
-    height: calc(100vh - 60px); /* Even shorter for tiny viewports */
-    margin-top: 10px;
-    padding-bottom: 40px; /* Minimal padding */
-    min-height: 80vh; /* Ensure minimum usable height */
+    height: 100dvh;
+    padding: 15px;
+    justify-content: flex-start;
+    padding-top: 30px;
   }
 
   .falling-text-target {
-    font-size: 1rem; /* Compact text for mobile */
-    letter-spacing: 0.5px; /* Tight spacing to fit words */
-    width: 95%; /* Slight width reduction to prevent overflow */
+    gap: 6px;
+    width: 100%;
+    justify-content: center;
+    align-items: flex-start;
   }
 
   .word {
-    margin: 0 2px; /* Minimal word gaps */
-    font-size: 0.9rem; /* Smaller words to fit line */
-    transition: color 0.2s ease, transform 0.2s ease; /* Faster transitions */
-  }
-
-  .word:hover {
-    transform: scale(1.05); /* Subtler hover scale on touch devices */
+    font-size: clamp(1.5rem, 10vw, 2.5rem); /* Significantly larger for mobile */
   }
 
   .tech-badge {
-    padding: 2px 6px; /* Very small badges */
-    margin-bottom: 4px;
-    margin-right: 3px;
-    font-size: 0.75rem; /* Tiny text */
-    gap: 3px; /* Tighter icon-text gap */
+    padding: 4px 10px; /* Fixed larger padding */
+    font-size: clamp(0.9rem, 6vw, 1.2rem); /* Bigger mobile text */
+    gap: 4px;
   }
 
   .tech-icon {
-    width: 16px; /* Small icons */
-    height: 16px;
+    width: 18px; /* Fixed larger size */
+    height: 18px;
   }
 
-
-  /* Ensure flex centering works on small screens */
-  .falling-text-container {
-    justify-content: center;
-    align-items: center;
-    text-align: center; /* Reinforce centering */
+  .falling-text-canvas {
+    overflow: hidden;
   }
 }
+
 
