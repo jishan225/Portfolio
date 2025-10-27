@@ -1,18 +1,18 @@
 .falling-text-container {
   position: relative;
   width: 100%;
-  min-height: 100vh;
-  height: 100dvh; /* Use dynamic viewport height */
+  height: 100vh;
   margin: 0;
   padding: 0;
   cursor: pointer;
+  text-align: center;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   background: radial-gradient(circle at center, #0a0a0a00, #00000000);
   animation: fadeInLeft 1.2s ease-in-out;
-  overflow: hidden; /* Critical for containing falling elements */
+  overflow: hidden; /* Prevent scrolling */
 }
 
 @keyframes fadeInLeft {
@@ -27,25 +27,22 @@
 }
 
 .falling-text-target {
-  display: flex;
-  flex-wrap: wrap; /* Allow badges to wrap on smaller screens */
-  justify-content: center; /* Center horizontally */
-  align-items: center; /* Center vertically */
-  gap: 8px; /* Consistent spacing between badges */
+  display: inline-block;
   color: white;
-  width: 90%; /* Prevent edge touching */
-  max-width: 800px; /* Limit maximum width for large screens */
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  width: 100%;
   text-align: center;
 }
 
 .word {
   display: inline-block;
-  margin: 0;
+  margin: 0 4px;
   user-select: none;
-  font-size: clamp(4rem, 10vw, 6rem); /* Much larger: 6rem min, 12vw preferred, 8rem max */
+  font-size: 1.6rem;
   transition: color 0.3s ease, transform 0.3s ease;
-  position: relative;
 }
+
 .word:hover {
   transform: scale(1.1);
 }
@@ -61,26 +58,25 @@
   left: 0;
   width: 100%;
   height: 100%;
-  overflow: hidden; /* Hide any canvas overflow */
-  pointer-events: none; /* Allow clicks to pass through */
+  overflow: hidden; /* Critical: prevent canvas overflow */
+ 
 }
 
 .tech-badge {
   display: inline-flex;
   align-items: center;
-  gap: clamp(4px, 1vw, 8px); /* Increased responsive gap */
-  padding: clamp(6px, 1vw, 8px) clamp(12px, 3vw, 20px); /* Larger padding for bigger text */
-  border-radius: 8px; /* Slightly larger border radius */
+  gap: 4px;
+  padding: 4px 10px;
+  border-radius: 6px;
   background: rgba(255, 255, 255, 0.1);
   white-space: nowrap;
-  font-size: clamp(1.2rem, 4vw, 1.8rem); /* Much larger badge text */
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  backdrop-filter: blur(10px);
+  margin-bottom: 8px;
+  margin-right: 6px;
 }
 
 .tech-icon {
-  width: clamp(24px, 5vw, 32px); /* Larger icons to match text */
-  height: clamp(24px, 5vw, 32px);
+  width: 24px;
+  height: 24px;
   object-fit: contain;
   flex-shrink: 0;
 }
@@ -88,65 +84,85 @@
 /* Tablet and smaller screens */
 @media screen and (max-width: 768px) {
   .falling-text-container {
+    height: 100vh;
     height: 100dvh;
-    padding: 20px;
+    margin: 0;
+    padding: 0;
+    letter-spacing: 1.5px;
   }
 
   .falling-text-target {
-    gap: 8px; /* Larger gap */
-    width: 95%;
-    max-width: none;
+    font-size: 1.2rem;
+    letter-spacing: 1px;
   }
 
   .word {
-    font-size: clamp(2rem, 8vw, 3.5rem); /* Larger for tablets */
+    margin: 0 3px;
+    font-size: 0.5rem;
   }
 
   .tech-badge {
-    padding: clamp(6px, 2.5vw, 10px) clamp(10px, 3vw, 16px);
-    font-size: clamp(1rem, 5vw, 1.4rem); /* Bigger badge text */
+    padding: 3px 8px;
+    margin-bottom: 6px;
+    margin-right: 4px;
+    font-size: 0.5rem;
   }
 
   .tech-icon {
-    width: clamp(20px, 6vw, 28px);
-    height: clamp(20px, 6vw, 28px);
+    width: 20px;
+    height: 20px;
+  }
+
+  @keyframes fadeInLeft {
+    from {
+      opacity: 0;
+      transform: translateX(-20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
   }
 }
 
 /* Mobile screens */
 @media screen and (max-width: 480px) {
   .falling-text-container {
+    height: 100vh;
     height: 100dvh;
-    padding: 15px;
-    justify-content: flex-start;
-    padding-top: 30px;
+    margin: 0;
+    padding: 0;
+    justify-content: center;
+    align-items: center;
   }
 
   .falling-text-target {
-    gap: 6px;
-    width: 100%;
-    justify-content: center;
-    align-items: flex-start;
+    font-size: 1rem;
+    letter-spacing: 0.5px;
+    width: 95%;
   }
 
   .word {
-    font-size: clamp(1.5rem, 10vw, 2.5rem); /* Significantly larger for mobile */
+    margin: 0 2px;
+    font-size: 0.9rem;
+    transition: color 0.2s ease, transform 0.2s ease;
+  }
+
+  .word:hover {
+    transform: scale(1.05);
   }
 
   .tech-badge {
-    padding: 4px 10px; /* Fixed larger padding */
-    font-size: clamp(0.9rem, 6vw, 1.2rem); /* Bigger mobile text */
-    gap: 4px;
+    padding: 2px 6px;
+    margin-bottom: 4px;
+    margin-right: 3px;
+    font-size: 0.75rem;
+    gap: 3px;
   }
 
   .tech-icon {
-    width: 18px; /* Fixed larger size */
-    height: 18px;
-  }
-
-  .falling-text-canvas {
-    overflow: hidden;
+    width: 16px;
+    height: 16px;
   }
 }
-
 
