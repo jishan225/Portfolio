@@ -11,6 +11,7 @@ import "./Folder.css";
 import "./FallingText.css";
 import { img } from "motion/react-client";
 import Contact from "./Contact.jsx";
+import Footer from "./Footer.jsx";
 
 
 import TicTacToe from './TicTacToe.jsx';
@@ -41,7 +42,7 @@ const Layout = ({ children }) => (
   <>
     <Navbar />
         {children}
-    
+    <Footer />  
   </>
 );
 

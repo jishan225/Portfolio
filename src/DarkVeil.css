@@ -1,5 +1,114 @@
 .darkveil-canvas {
   width: 100%;
   height: 100vh;
+  height: 100dvh; /* Dynamic viewport height for mobile browsers */
   display: block;
+  position: relative; /* Better positioning control */
+  overflow: hidden; /* Prevent scroll issues */
+  touch-action: manipulation; /* Optimize touch interactions */
+}
+
+/* Tablet devices (601px - 1024px) */
+@media screen and (min-width: 601px) and (max-width: 1024px) {
+  .darkveil-canvas {
+    height: 100dvh;
+    max-height: -webkit-fill-available; /* Safari iOS fix */
+  }
+}
+
+/* Small tablets and large phones (481px - 600px) */
+@media screen and (min-width: 481px) and (max-width: 600px) {
+  .darkveil-canvas {
+    height: 100dvh;
+    min-height: -webkit-fill-available;
+  }
+}
+
+/* Mobile devices (320px - 480px) */
+@media screen and (max-width: 480px) {
+  .darkveil-canvas {
+    width: 100vw;
+    height: 100dvh;
+    min-height: -webkit-fill-available; /* Fix iOS Safari viewport issues */
+    max-height: -webkit-fill-available;
+    position: fixed; /* Prevent mobile address bar issues */
+    top: 0;
+    left: 0;
+  }
+}
+
+/* Extra small devices (< 320px) */
+@media screen and (max-width: 320px) {
+  .darkveil-canvas {
+    width: 100%;
+    height: 100dvh;
+    position: fixed;
+    top: 0;
+    left: 0;
+  }
+}
+
+/* Large screens (1440px+) */
+@media screen and (min-width: 1440px) {
+  .darkveil-canvas {
+    height: 100vh;
+    max-height: 100vh;
+  }
+}
+
+/* Landscape orientation on mobile */
+@media screen and (max-height: 500px) and (orientation: landscape) {
+  .darkveil-canvas {
+    height: 100vh;
+    min-height: 100vh;
+    position: fixed;
+    width: 100vw;
+  }
+}
+
+/* Short screens optimization */
+@media screen and (max-height: 600px) {
+  .darkveil-canvas {
+    height: 100dvh;
+    min-height: 100dvh;
+  }
+}
+
+/* Ultra-wide screens (21:9 aspect ratio) */
+@media screen and (min-aspect-ratio: 21/9) {
+  .darkveil-canvas {
+    width: 100%;
+    height: 100vh;
+    object-fit: cover; /* Maintain aspect ratio on ultra-wide */
+  }
+}
+
+/* High DPI displays (Retina) */
+@media screen and (min-resolution: 2dppx) {
+  .darkveil-canvas {
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: crisp-edges;
+  }
+}
+
+/* Reduced motion for accessibility */
+@media (prefers-reduced-motion: reduce) {
+  .darkveil-canvas {
+    animation: none !important;
+  }
+}
+
+/* Print styles */
+@media print {
+  .darkveil-canvas {
+    display: none; /* Hide canvas when printing */
+  }
+}
+
+/* iOS specific fixes */
+@supports (-webkit-touch-callout: none) {
+  .darkveil-canvas {
+    height: -webkit-fill-available;
+    min-height: -webkit-fill-available;
+  }
 }

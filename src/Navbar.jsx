@@ -58,7 +58,7 @@ function Navbar() {
           </ul>
 
           <a 
-            href="/path-to-your-resume.pdf" 
+            href="https://drive.google.com/file/d/1r3GkArSsSUDW8m9jORpQueJzsYRoOj8D/view?usp=sharing"
             className="resume-link" 
             target="_blank" 
             rel="noopener noreferrer"
