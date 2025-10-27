@@ -2,8 +2,8 @@
   position: relative;
   width: 100%;
   height: 100%;
-  z-index: 40;
-  pointer-events: none; /* ✅ CRITICAL FIX: Allow clicks/scroll through */
+  z-index: 10000; /* ✅ Increased from 40 to ensure it's above everything */
+  pointer-events: none;
 }
 
 .staggered-menu-wrapper.fixed-wrapper {
@@ -12,9 +12,9 @@
   left: 0;
   width: 100vw;
   height: 100vh;
-  z-index: 40;
+  z-index: 10000; /* ✅ Increased from 40 */
   overflow: hidden;
-  pointer-events: none; /* ✅ CRITICAL FIX: Allow clicks/scroll through */
+  pointer-events: none;
 }
 
 .staggered-menu-header {
@@ -27,9 +27,10 @@
   justify-content: space-between;
   padding: 2em;
   background: transparent;
-  pointer-events: auto; /* ✅ Header always clickable */
-  z-index: 20;
+  pointer-events: auto;
+  z-index: 10001; /* ✅ Even higher for header */
 }
+
 
 .staggered-menu-header > * {
   pointer-events: auto;
@@ -431,5 +432,14 @@
     font-size: 1.2rem;
   }
 }
-
+/* ✅ CRITICAL: Hide all navigation when modal is open */
+body.modal-open .navbar,
+body.modal-open .desktop-nav,
+body.modal-open .mobile-menu-wrapper,
+body.modal-open .staggered-menu-wrapper,
+body.modal-open .staggered-menu-header {
+  opacity: 0 !important;
+  pointer-events: none !important;
+  visibility: hidden !important;
+}
 

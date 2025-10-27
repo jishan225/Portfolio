@@ -214,13 +214,14 @@
   left: 0;
   width: 100vw;
   height: 100vh;
-  background: rgba(0, 0, 0, 0.45);
+  background: rgba(0, 0, 0, 0.95);
   display: flex;
   justify-content: center;
   align-items: center;
-  z-index: 9999;
+  z-index: 9500; /* ✅ Reduced from 9999 to be below menu */
   animation: fadeIn 0.3s ease-in-out;
 }
+
 
 .modal-content {
   position: relative;
@@ -246,11 +247,11 @@
   bottom: 0;
   width: 100vw;
   height: 100vh;
-  background: rgba(0, 0, 0, 0.45);
+  background: rgba(0, 0, 0, 0.95);
   display: flex;
   justify-content: center;
   align-items: center;
-  z-index: 99999;
+  z-index: 9500; /* ✅ Reduced from 99999 to be below menu */
   animation: fadeIn 0.3s ease-in-out;
 }
 
@@ -276,7 +277,7 @@
   align-items: center;
   justify-content: center;
   backdrop-filter: blur(10px);
-  z-index: 100001;
+  z-index: 9501; /* ✅ Reduced from 100001 but still above modal */
   line-height: 1;
   padding: 0;
   font-weight: 300;

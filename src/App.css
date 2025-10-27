@@ -1,11 +1,12 @@
 /* 🌌 MAIN CONTAINER ABOVE BACKGROUND */
 .container {
   width: 100%;
-  height: 100vh;
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
   position: relative;
-  z-index: 10; /* Keeps it above DarkVeil */
+  z-index: 10;
+  padding: 20px;
 }
 
 /* Optional translucent overlay for better readability */
@@ -19,19 +20,25 @@
 /* 🧩 CONTENT AREA */
 .content {
   display: flex;
-  align-items: center;              /* Vertically center both sides */
-  justify-content: space-between;   /* Push card left, text right */
+  align-items: center;
+  justify-content: space-between;
   padding: 0 150px;
   flex: 1;
+  gap: 60px;
+  width: 100%;
+  max-width: 1600px;
+  margin: 0 auto;
 }
 
 /* 🪞 LEFT CARD SECTION */
 .card {
   flex: 1;
   display: flex;
-  justify-content: center;          /* Center card horizontally */
-  align-items: center; 
-  animation: fadeInLeft 1.2s ease-in-out;            /* Vertically center card */
+  justify-content: center;
+  align-items: center;
+  animation: fadeInLeft 1.2s ease-in-out;
+  min-width: 280px;
+  max-width: 400px;
 }
 
 /* ✍️ RIGHT TEXT SECTION */
@@ -44,6 +51,7 @@
   padding: 50px 80px;
   color: #ffffff;
   animation: fadeInRight 1.2s ease-in-out;
+  max-width: 700px;
 }
 
 /* 👋 INTRO HEADING */
@@ -77,6 +85,7 @@
   flex-direction: column;
   gap: 10px;
   max-width: 600px;
+  width: 100%;
 }
 
 .about h4 {
@@ -89,6 +98,7 @@
   width: 80px;
   border: 2px solid #6049ea;
   border-radius: 5px;
+  margin: 0;
 }
 
 .about p {
@@ -98,7 +108,7 @@
   text-align: justify;
 }
 
-/* ✨ FADE-IN FROM RIGHT ANIMATION */
+/* ✨ ANIMATIONS */
 @keyframes fadeInRight {
   from {
     opacity: 0;
@@ -113,27 +123,137 @@
 @keyframes fadeInLeft {
   from {
     opacity: 0;
-    transform: translateX(-30px);  /* Start slightly left */
+    transform: translateX(-30px);
   }
   to {
     opacity: 1;
-    transform: translateX(0);      /* Settle in place */
+    transform: translateX(0);
   }
 }
 
-/* 📱 RESPONSIVE TWEAKS */
-@media (max-width: 900px) {
+/* 💻 LARGE DESKTOP (1440px+) */
+@media (min-width: 1440px) {
+  .content {
+    padding: 0 200px;
+  }
+  
+  .HeadName h2 {
+    font-size: 3.2rem;
+  }
+  
+  .HeadName h4 {
+    font-size: 1.5rem;
+  }
+  
+  .about h4 {
+    font-size: 1.8rem;
+  }
+  
+  .about p {
+    font-size: 1.15rem;
+  }
+}
+
+/* 💻 DESKTOP (1200px - 1439px) */
+@media (max-width: 1439px) {
+  .content {
+    padding: 0 100px;
+  }
+}
+
+/* 📱 LAPTOP (1024px - 1199px) */
+@media (max-width: 1199px) {
+  .content {
+    padding: 0 80px;
+    gap: 50px;
+  }
+  
+  .text-section {
+    padding: 40px 60px;
+  }
+  
+  .HeadName h2 {
+    font-size: 2.5rem;
+  }
+  
+  .HeadName h4 {
+    font-size: 1.2rem;
+  }
+  
+  .about h4 {
+    font-size: 1.5rem;
+  }
+  
+  .about p {
+    font-size: 1rem;
+  }
+}
+
+/* 📱 TABLET (900px - 1023px) - SWITCH TO VERTICAL */
+@media (max-width: 1023px) {
   .content {
     flex-direction: column;
     padding: 60px 40px;
     text-align: center;
+    gap: 50px;
   }
 
-  .card, .text-section {
+  .card {
     flex: unset;
     width: 100%;
+    max-width: 350px;
+    justify-content: center;
+  }
+
+  .text-section {
+    flex: unset;
+    width: 100%;
+    max-width: 650px;
     justify-content: center;
     align-items: center;
+    padding: 30px 40px;
+  }
+
+  .HeadName {
+    align-items: center;
+    text-align: center;
+  }
+
+  .HeadName h2 {
+    font-size: 2.0rem;
+  }
+
+  .HeadName h4 {
+    font-size: 1.2rem;
+  }
+
+  .about {
+    align-items: center;
+    text-align: center;
+  }
+
+  .about hr {
+    margin: 0 auto;
+  }
+
+  .about p {
+    text-align: center;
+  }
+}
+
+/* 📱 TABLET PORTRAIT (768px - 899px) */
+@media (max-width: 899px) {
+  .content {
+    padding: 50px 30px;
+    gap: 40px;
+  }
+
+  .card {
+    max-width: 320px;
+  }
+
+  .text-section {
+    padding: 20px 30px;
   }
 
   .HeadName h2 {
@@ -144,7 +264,197 @@
     font-size: 1.1rem;
   }
 
-  .about {
-    max-width: 90%;
+  .about h4 {
+    font-size: 1.4rem;
+  }
+
+  .about p {
+    font-size: 0.95rem;
+  }
+
+  .about hr {
+    width: 70px;
   }
 }
+
+/* 📱 MOBILE LANDSCAPE (640px - 767px) */
+@media (max-width: 767px) {
+  .container {
+    padding: 15px;
+  }
+
+  .content {
+    padding: 40px 20px;
+    gap: 35px;
+  }
+
+  .card {
+    max-width: 300px;
+  }
+
+  .text-section {
+    padding: 15px 20px;
+    max-width: 100%;
+  }
+
+  .HeadName {
+    gap: 6px;
+    margin-bottom: 25px;
+  }
+
+  .HeadName h2 {
+    font-size: 2rem;
+  }
+
+  .HeadName h4 {
+    font-size: 1rem;
+  }
+
+  .about {
+    gap: 8px;
+  }
+
+  .about h4 {
+    font-size: 1.3rem;
+  }
+
+  .about hr {
+    width: 60px;
+    border-width: 1.5px;
+  }
+
+  .about p {
+    font-size: 0.9rem;
+    line-height: 1.5;
+  }
+}
+
+/* 📱 MOBILE PORTRAIT (480px - 639px) */
+@media (max-width: 639px) {
+  .content {
+    padding: 30px 15px;
+    gap: 30px;
+  }
+
+  .card {
+    max-width: 280px;
+  }
+
+  .text-section {
+    padding: 10px 15px;
+  }
+
+  .HeadName h2 {
+    font-size: 1.8rem;
+  }
+
+  .HeadName h4 {
+    font-size: 0.95rem;
+  }
+
+  .about h4 {
+    font-size: 1.2rem;
+  }
+
+  .about p {
+    font-size: 0.85rem;
+  }
+
+  .about hr {
+    width: 50px;
+  }
+}
+
+/* 📱 SMALL MOBILE (360px - 479px) */
+/* 📱 SMALL MOBILE (360px - 479px) */
+@media (max-width: 479px) {
+  .container {
+    padding: 10px;
+  }
+
+  .content {
+    padding: 25px 10px;
+    gap: 25px;
+  }
+
+  .card {
+    max-width: 250px;
+  }
+
+  .text-section {
+    padding: 8px 12px;
+    margin-top: 30px; /* ✅ Push text section down */
+  }
+
+  .HeadName {
+    gap: 5px;
+    margin-bottom: 20px;
+    margin-top: 100px; /* ✅ Additional spacing from top */
+  }
+
+  .HeadName h2 {
+    font-size: 1.6rem;
+    letter-spacing: 0.5px;
+  }
+
+  .HeadName h4 {
+    font-size: 0.9rem;
+  }
+
+  .about {
+    gap: 6px;
+    margin-top: 15px; /* ✅ Push about section down */
+  }
+
+  .about h4 {
+    font-size: 1.1rem;
+  }
+
+  .about hr {
+    width: 45px;
+    border-width: 1.5px;
+  }
+
+  .about p {
+    font-size: 0.8rem;
+    line-height: 1.4;
+  }
+}
+
+
+/* 📱 EXTRA SMALL MOBILE (320px - 359px) */
+@media (max-width: 359px) {
+  .content {
+    padding: 20px 8px;
+    gap: 20px;
+  }
+
+  .card {
+    max-width: 230px;
+  }
+
+  .text-section {
+    padding: 6px 10px;
+  }
+
+  .HeadName h2 {
+    font-size: 1.5rem;
+  }
+
+  .HeadName h4 {
+    font-size: 0.85rem;
+  }
+
+  .about h4 {
+    font-size: 1rem;
+  }
+
+  .about hr {
+    width: 40px;
+  }
+
+  .about p {
+    font-size: 0.75rem;
+  }
+}
+

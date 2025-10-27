@@ -157,4 +157,13 @@
   }
 }
 
+/* ✅ Hide navbar when modal is open */
+body.modal-open .navbar,
+body.modal-open .desktop-nav,
+body.modal-open .mobile-menu-wrapper {
+  opacity: 0 !important;
+  pointer-events: none !important;
+  visibility: hidden !important;
+  transition: opacity 0.3s ease-out;
+}
 

@@ -46,12 +46,8 @@ const Folder = ({ color = '#5227FF', size = 1, images = [], games = [], classNam
   const handlePaperClick = (e, image, index) => {
     e.stopPropagation();
     
-    // Hide navbar
-    const navbar = document.querySelector('.navbar');
-    if (navbar) {
-      navbar.style.opacity = '0';
-      navbar.style.pointerEvents = 'none';
-    }
+    // ✅ Add modal-open class to body
+    document.body.classList.add('modal-open');
 
     // If there's a game for this paper, open the game
     if (games && games[index]) {
@@ -66,12 +62,9 @@ const Folder = ({ color = '#5227FF', size = 1, images = [], games = [], classNam
   const closeModal = () => {
     setSelectedImage(null);
     setSelectedGame(null);
-    // Show navbar
-    const navbar = document.querySelector('.navbar');
-    if (navbar) {
-      navbar.style.opacity = '1';
-      navbar.style.pointerEvents = 'auto';
-    }
+    
+    // ✅ Remove modal-open class from body
+    document.body.classList.remove('modal-open');
   };
 
   const handlePaperMouseMove = (e, index) => {
