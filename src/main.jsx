@@ -17,6 +17,11 @@ import Project from "./Project.jsx";
 
 import TicTacToe from './TicTacToe.jsx';
 import BubbleGame from "./Bubblegame.jsx";
+import SimonGame from "./SimonGame.jsx";
+import TicTacToeIcon from "./assets/tictactoe.png";
+import BubbleGameIcon from "./assets/BubbleGameIcon.png";
+import SimonGameImg from "./assets/SimonImg.jpg";
+
 import NodeIcon from "./assets/node.png";
 import ReactIcon from "./assets/react.png";
 import MongoIcon from "./assets/mongo.png";
@@ -31,8 +36,7 @@ import CppIcon from "./assets/cpp.png";
 import PythonIcon from "./assets/python.png";
 import ApiIcon from "./assets/api.png";
 import TailwindIcon from "./assets/tailwind.png";
-import TicTacToeIcon from "./assets/tictactoe.png";
-import BubbleGameIcon from "./assets/BubbleGameIcon.png";
+
 
 
 import Cert1 from './assets/Cert1.jpeg';
@@ -128,11 +132,11 @@ const router = createBrowserRouter([
           size={2} 
           color="#1900ffff" 
           className="custom-folder"
-          images={[TicTacToeIcon, BubbleGameIcon, null]}
+          images={[TicTacToeIcon, BubbleGameIcon, SimonGameImg]}
           games={[
             <TicTacToe />,    // Left paper - TicTacToe
             <BubbleGame />,   // Middle paper - BubbleGame
-            null              // Right paper - empty
+            <SimonGame />              // Right paper - empty
           ]}
           title="Games"
           description="Click to explore and play interactive games"

@@ -2,30 +2,35 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: space-evenly; /* Even spacing between all children */
   width: 90%;
-  max-width: 600px; 
+  max-width: 600px;
   height: auto;
-  min-height: 500px; 
-  max-height: 700px; 
+  min-height: min(90vh, 600px);
+  max-height: 90vh;
+  
   padding: 30px;
-  background: rgba(0, 0, 255, 0.1); 
-  backdrop-filter: blur(10px); 
-  border: 2px solid rgba(59, 130, 246, 0.3); 
-  border-radius: 20px; 
+  background: rgba(2, 2, 78, 0.922);
+  backdrop-filter: blur(10px);
+  border: 2px solid rgba(59, 130, 246, 0.3);
+  border-radius: 20px;
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3),
-              0 0 40px rgba(59, 130, 246, 0.2); 
+              0 0 40px rgba(59, 130, 246, 0.2);
   font-family: 'Poppins', sans-serif;
-  margin: auto; 
+  
+  margin: 0 auto;
+  overflow-y: hidden;
+  
+  /* Remove individual gaps, let space-evenly handle it */
 }
-
 
 @media (max-width: 768px) {
   .tic-tac-toe {
     width: 95%;
     max-width: 500px;
-    min-height: 450px;
-    padding: 20px;
+    min-height: min(85vh, 500px);
+    max-height: 85vh;
+    padding: 25px 20px;
     border-radius: 15px;
   }
 }
@@ -34,22 +39,24 @@
   .tic-tac-toe {
     width: 98%;
     max-width: 400px;
-    min-height: 400px;
-    padding: 15px;
+    min-height: min(80vh, 450px);
+    max-height: 80vh;
+    padding: 20px 15px;
     border-radius: 12px;
   }
 }
 
-
+/* Game Title */
 .game-title {
-  font-size: 2rem; /* Reduced from 3rem */
+  font-size: clamp(1.3rem, 4vw, 2rem); /* Responsive font size */
   font-weight: 700;
   color: #ffffff;
-  margin-bottom: 15px; /* Reduced from 20px */
+  margin: 0; /* Remove all margins */
   text-transform: uppercase;
   letter-spacing: 3px;
   text-shadow: 0 0 20px rgba(96, 73, 234, 0.8);
   animation: glow 2s ease-in-out infinite alternate;
+  text-align: center;
 }
 
 @keyframes glow {
@@ -63,38 +70,44 @@
   }
 }
 
+/* Status Display */
 .status {
-  font-size: 1.3rem; /* Reduced from 1.8rem */
+  font-size: clamp(1rem, 2.5vw, 1.3rem); /* Responsive font size */
   font-weight: 600;
   color: #ffffff;
-  margin-bottom: 20px; /* Reduced from 30px */
-  padding: 10px 20px; /* Reduced from 15px 30px */
+  margin: 0; /* Remove all margins */
+  padding: 10px 20px;
   background: rgba(96, 73, 234, 0.2);
   border-radius: 15px;
   border: 2px solid rgba(96, 73, 234, 0.5);
   backdrop-filter: blur(10px);
   transition: all 0.3s ease;
+  text-align: center;
+  white-space: nowrap;
 }
 
+/* Game Board */
 .board {
   display: grid;
-  grid-template-columns: repeat(3, 90px); /* Reduced from 120px */
-  grid-template-rows: repeat(3, 90px); /* Reduced from 120px */
-  gap: 12px; /* Reduced from 15px */
-  margin-bottom: 25px; /* Reduced from 40px */
-  padding: 15px; /* Reduced from 20px */
+  grid-template-columns: repeat(3, clamp(60px, 15vw, 90px)); /* Responsive grid */
+  grid-template-rows: repeat(3, clamp(60px, 15vw, 90px));
+  gap: clamp(8px, 2vw, 12px); /* Responsive gap */
+  margin: 0; /* Remove all margins */
+  padding: 15px;
   background: rgba(0, 0, 0, 0.3);
   border-radius: 20px;
   box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
 }
 
+/* Board Squares */
 .square {
-  width: 90px; /* Reduced from 120px */
-  height: 90px; /* Reduced from 120px */
+  width: 100%; /* Fill grid cell */
+  height: 100%; /* Fill grid cell */
+  aspect-ratio: 1; /* Keep square */
   background: rgba(255, 255, 255, 0.05);
   border: 3px solid rgba(96, 73, 234, 0.4);
   border-radius: 15px;
-  font-size: 2.5rem; /* Reduced from 3rem */
+  font-size: clamp(1.8rem, 4vw, 2.5rem); /* Responsive font */
   font-weight: bold;
   color: #ffffff;
   cursor: pointer;
@@ -139,9 +152,10 @@
   opacity: 0.6;
 }
 
+/* Reset Button */
 .reset-button {
-  padding: 12px 30px; /* Reduced from 15px 40px */
-  font-size: 1rem; /* Reduced from 1.2rem */
+  padding: 10px 30px;
+  font-size: clamp(0.85rem, 2vw, 1rem); /* Responsive font */
   font-weight: 600;
   color: #ffffff;
   background: linear-gradient(135deg, #6049ea, #5227ff);
@@ -152,6 +166,8 @@
   text-transform: uppercase;
   letter-spacing: 2px;
   box-shadow: 0 5px 20px rgba(96, 73, 234, 0.4);
+  margin: 0; /* Remove all margins */
+  white-space: nowrap;
 }
 
 .reset-button:hover {
@@ -171,7 +187,7 @@
     transform: scale(1);
   }
   50% {
-    transform: scale(1.1);
+    transform: scale(1.05);
   }
 }
 
@@ -181,63 +197,91 @@
   border-color: rgba(76, 175, 80, 0.8);
 }
 
-/* Responsive Design */
+/* Responsive Design - Fine-tuning */
 @media (max-width: 768px) {
   .game-title {
-    font-size: 1.6rem;
+    letter-spacing: 2px;
   }
-
+  
   .board {
-    grid-template-columns: repeat(3, 75px);
-    grid-template-rows: repeat(3, 75px);
-    gap: 10px;
     padding: 12px;
+    border-radius: 18px;
   }
-
+  
   .square {
-    width: 75px;
-    height: 75px;
-    font-size: 2rem;
+    border-radius: 12px;
   }
-
+  
   .status {
-    font-size: 1.1rem;
     padding: 8px 18px;
-  }
-
-  .reset-button {
-    padding: 10px 25px;
-    font-size: 0.9rem;
   }
 }
 
 @media (max-width: 480px) {
   .game-title {
+    letter-spacing: 1.5px;
+  }
+  
+  .board {
+    padding: 10px;
+    border-radius: 15px;
+  }
+  
+  .square {
+    border-width: 2px;
+    border-radius: 10px;
+  }
+  
+  .status {
+    padding: 8px 15px;
+    border-radius: 12px;
+  }
+  
+  .reset-button {
+    padding: 8px 25px;
+    letter-spacing: 1.5px;
+  }
+}
+
+@media (max-width: 380px) {
+  .board {
+    padding: 8px;
+  }
+  
+  .square {
+    border-radius: 8px;
+  }
+}
+
+/* Landscape orientation optimization */
+@media (max-height: 600px) and (orientation: landscape) {
+  .tic-tac-toe {
+    min-height: 95vh;
+    padding: 15px 30px;
+  }
+  
+  .game-title {
     font-size: 1.3rem;
   }
-
+  
+  .status {
+    font-size: 1rem;
+    padding: 6px 15px;
+  }
+  
   .board {
-    grid-template-columns: repeat(3, 60px);
-    grid-template-rows: repeat(3, 60px);
+    grid-template-columns: repeat(3, 70px);
+    grid-template-rows: repeat(3, 70px);
     gap: 8px;
     padding: 10px;
   }
-
+  
   .square {
-    width: 60px;
-    height: 60px;
-    font-size: 1.8rem;
-    border-width: 2px;
+    font-size: 2rem;
   }
-
-  .status {
-    font-size: 1rem;
-    padding: 8px 15px;
-  }
-
+  
   .reset-button {
     padding: 8px 20px;
     font-size: 0.85rem;
   }
 }
-

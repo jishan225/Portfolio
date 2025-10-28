@@ -15,7 +15,7 @@
   max-width: 1200px;
   height: 85vh;
   max-height: 900px;
-  background: rgba(55, 17, 224, 0.735);
+  background: rgba(11, 1, 57, 0.749);
   backdrop-filter: blur(10px);
   border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: 20px;
@@ -71,25 +71,23 @@
 
 /* Game Title Header */
 .bubble-header {
-  width: 100%;
-  padding: 15px 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background: rgba(59, 130, 246, 0.05);
-  border-bottom: 1px solid rgba(59, 130, 246, 0.1);
+  padding: 0;
+  margin: 0;
   flex-shrink: 0;
 }
 
 .game-title {
-  font-size: 32px;
+  font-size: 24px;
   font-weight: 700;
   color: #ffffff;
   text-transform: uppercase;
-  letter-spacing: 4px;
+  letter-spacing: 3px;
   text-shadow: 0 0 30px rgba(211, 215, 221, 0.452),
                0 0 50px rgba(208, 214, 224, 0.4);
   animation: glow 2s ease-in-out infinite alternate;
+  margin: 0;
+  padding: 8px 0;
+  line-height: 1
 }
 
 @keyframes glow {
@@ -105,7 +103,7 @@
 }
 
 .bubble-top {
-  padding: 15px 30px;
+  padding: 5px 10px;
   width: 100%;
   display: flex;
   align-items: center;
@@ -124,7 +122,7 @@
 
 .bubble-element h2 {
   font-weight: 300;
-  font-size: 14px;
+  font-size: 10px;
   color: #ffffff;
   text-transform: uppercase;
   letter-spacing: 2px;
@@ -133,8 +131,8 @@
 .bubble-box {
   color: #3b82f6;
   font-weight: 700;
-  font-size: 24px;
-  padding: 10px 20px;
+  font-size: 20px;
+  padding: 5px 10px;
   background: rgba(255, 255, 255, 0.1);
   backdrop-filter: blur(5px);
   border: 2px solid rgba(59, 130, 246, 0.3);
@@ -150,20 +148,21 @@
   justify-content: center;
   align-items: center;
   align-content: center;
-  gap: 10px;
+  gap: 12px;
   flex-wrap: wrap;
-  padding: 20px;
+  padding: 10px;
   width: 100%;
   flex: 1;
   overflow: hidden;
+
 }
 
 .bubble {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 50px;
-  height: 50px;
+  width: 45px;
+  height: 45px;
   background: rgba(59, 130, 246, 0.2);
   backdrop-filter: blur(5px);
   border: 2px solid rgba(59, 130, 246, 0.3);
