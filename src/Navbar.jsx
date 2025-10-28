@@ -14,10 +14,10 @@ function Navbar() {
   ];
 
   const socialItems = [
-    { label: 'GitHub', link: 'https://github.com/yourusername' },
-    { label: 'LinkedIn', link: 'https://linkedin.com/in/yourusername' },
-    { label: 'Instagram', link: 'https://instagram.com/yourusername' },
-    { label: 'Twitter', link: 'https://twitter.com/yourusername' }
+    { label: 'GitHub', link: 'https://github.com/jishan225' },
+    { label: 'LinkedIn', link: 'https://linkedin.com/in/md-jishan-8626a62b1' },
+    { label: 'Instagram', link: 'https://instagram.com/jishannn._' },
+    { label: 'Leetcode', link: 'https://leetcode.com/MDJ786' }
   ];
 
   return (
@@ -80,7 +80,7 @@ function Navbar() {
           openMenuButtonColor="#000"
           changeMenuColorOnOpen={true}
           colors={['#2632dfea', '#4051e8ea']}
-          logoText="MDJ" // ✅ Pass MDJ as text instead of logo
+          logoText="MDJ" 
           accentColor="#6049ea"
           isFixed={true}
           onMenuOpen={() => console.log('Menu opened')}
