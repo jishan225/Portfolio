@@ -1,4 +1,4 @@
-import { StrictMode } from "react";
+import { StrictMode, useEffect } from "react";
 import { createRoot } from "react-dom/client";
 import "./index.css";
 import App from "./App.jsx";
@@ -13,7 +13,6 @@ import { img } from "motion/react-client";
 import Contact from "./Contact.jsx";
 import Footer from "./Footer.jsx";
 import Project from "./Project.jsx";
-
 
 import TicTacToe from './TicTacToe.jsx';
 import BubbleGame from "./Bubblegame.jsx";
@@ -37,8 +36,6 @@ import PythonIcon from "./assets/python.png";
 import ApiIcon from "./assets/api.png";
 import TailwindIcon from "./assets/tailwind.png";
 
-
-
 import Cert1 from './assets/Cert1.jpeg';
 import Cert2 from './assets/Cert2.jpg';
 import Cert3 from './assets/Cert3.jpeg';
@@ -46,7 +43,7 @@ import Cert3 from './assets/Cert3.jpeg';
 const Layout = ({ children }) => (
   <>
     <Navbar />
-        {children}
+    {children}
     <Footer />  
   </>
 );
@@ -58,13 +55,29 @@ const TechBadge = ({ icon, name }) => (
   </span>
 );
 
+// ✅ NEW: Loader wrapper component
+const AppWithLoader = ({ children }) => {
+  useEffect(() => {
+    // Remove loader after React mounts
+    const loader = document.getElementById('loader');
+    if (loader) {
+      loader.classList.add('fade-out');
+      setTimeout(() => {
+        loader.remove();
+      }, 300);
+    }
+  }, []);
+
+  return children;
+};
+
 const router = createBrowserRouter([
   {
     path: "/",
     element: (
       <Layout>
-    <App />
-    </Layout>
+        <App />
+      </Layout>
     )
   },
   {
@@ -106,75 +119,77 @@ const router = createBrowserRouter([
       </Layout>
     ),
   },
- {
-  path: "/certificates",
-  element: (
-    <Layout>
-      <div className="certificates-container">
-        <Folder 
-          size={2} 
-          color="#3200fcff" 
-          className="custom-folder"
-          images={[Cert1, Cert2, Cert3]}
-          title="Certificates"
-          description="Click to open and view my certificates"
-        />
-      </div>
-    </Layout>
-  ),
-},
-{
-  path: "/games",
-  element: (
-    <Layout>
-      <div className="games-container">
-        <Folder 
-          size={2} 
-          color="#1900ffff" 
-          className="custom-folder"
-          images={[TicTacToeIcon, BubbleGameIcon, SimonGameImg]}
-          games={[
-            <TicTacToe />,    // Left paper - TicTacToe
-            <BubbleGame />,   // Middle paper - BubbleGame
-            <SimonGame />              // Right paper - empty
-          ]}
-          title="Games"
-          description="Click to explore and play interactive games"
-        />
-      </div>
-    </Layout>
-  )
-},
-{
-  path: "/contact",
-  element: (
-    <Layout>
-      <Contact />
-    </Layout>
-  )
-},{
-  path: "/projects",
-  element: (
-    <Layout>
-      <Project/>
-    </Layout>
-  )
-}
-
+  {
+    path: "/certificates",
+    element: (
+      <Layout>
+        <div className="certificates-container">
+          <Folder 
+            size={2} 
+            color="#3200fcff" 
+            className="custom-folder"
+            images={[Cert1, Cert2, Cert3]}
+            title="Certificates"
+            description="Click to open and view my certificates"
+          />
+        </div>
+      </Layout>
+    ),
+  },
+  {
+    path: "/games",
+    element: (
+      <Layout>
+        <div className="games-container">
+          <Folder 
+            size={2} 
+            color="#1900ffff" 
+            className="custom-folder"
+            images={[TicTacToeIcon, BubbleGameIcon, SimonGameImg]}
+            games={[
+              <TicTacToe />,
+              <BubbleGame />,
+              <SimonGame />
+            ]}
+            title="Games"
+            description="Click to explore and play interactive games"
+          />
+        </div>
+      </Layout>
+    )
+  },
+  {
+    path: "/contact",
+    element: (
+      <Layout>
+        <Contact />
+      </Layout>
+    )
+  },
+  {
+    path: "/projects",
+    element: (
+      <Layout>
+        <Project/>
+      </Layout>
+    )
+  }
 ]);
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
-    <div style={{ position: "relative", width: "100%", height: "100vh" }}>
-      {/* ✅ Background stays fixed and global */}
-      <div className="darkveil-background">
-        <DarkVeil />
-      </div>
+    <AppWithLoader>
+      <div style={{ position: "relative", width: "100%", height: "100vh" }}>
+        {/* ✅ Background stays fixed and global */}
+        <div className="darkveil-background">
+          <DarkVeil />
+        </div>
 
-      {/* ✅ Routes appear above background */}
-      <div className="page-content">
-        <RouterProvider router={router} />
+        {/* ✅ Routes appear above background */}
+        <div className="page-content">
+          <RouterProvider router={router} />
+        </div>
       </div>
-    </div>
+    </AppWithLoader>
   </StrictMode>
 );

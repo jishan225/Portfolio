@@ -5,7 +5,6 @@
   display: block;
   position: relative; /* Better positioning control */
   overflow: hidden; /* Prevent scroll issues */
-  touch-action: manipulation; /* Optimize touch interactions */
 }
 
 /* Tablet devices (601px - 1024px) */
@@ -48,23 +47,8 @@
   }
 }
 
-/* Large screens (1440px+) */
-@media screen and (min-width: 1440px) {
-  .darkveil-canvas {
-    height: 100vh;
-    max-height: 100vh;
-  }
-}
 
-/* Landscape orientation on mobile */
-@media screen and (max-height: 500px) and (orientation: landscape) {
-  .darkveil-canvas {
-    height: 100vh;
-    min-height: 100vh;
-    position: fixed;
-    width: 100vw;
-  }
-}
+
 
 /* Short screens optimization */
 @media screen and (max-height: 600px) {
@@ -74,41 +58,3 @@
   }
 }
 
-/* Ultra-wide screens (21:9 aspect ratio) */
-@media screen and (min-aspect-ratio: 21/9) {
-  .darkveil-canvas {
-    width: 100%;
-    height: 100vh;
-    object-fit: cover; /* Maintain aspect ratio on ultra-wide */
-  }
-}
-
-/* High DPI displays (Retina) */
-@media screen and (min-resolution: 2dppx) {
-  .darkveil-canvas {
-    image-rendering: -webkit-optimize-contrast;
-    image-rendering: crisp-edges;
-  }
-}
-
-/* Reduced motion for accessibility */
-@media (prefers-reduced-motion: reduce) {
-  .darkveil-canvas {
-    animation: none !important;
-  }
-}
-
-/* Print styles */
-@media print {
-  .darkveil-canvas {
-    display: none; /* Hide canvas when printing */
-  }
-}
-
-/* iOS specific fixes */
-@supports (-webkit-touch-callout: none) {
-  .darkveil-canvas {
-    height: -webkit-fill-available;
-    min-height: -webkit-fill-available;
-  }
-}
