@@ -13,10 +13,10 @@ function App() {
             imageSrc={cardImg}
             altText="Md Jishan - Developer"
             captionText="Md Jishan"
-            containerHeight="300px"
+            containerHeight="380px"
             containerWidth="300px"
-            imageHeight="350px"
-            imageWidth="350px"
+            imageHeight="400px"
+            imageWidth="400px"
             rotateAmplitude={12}
             scaleOnHover={1.2}
             showMobileWarning={false}
